@@ -162,7 +162,6 @@ std::istream & operator>>( std::istream & stream, BookList & bookList )
 // TO DO
 BookList::BookList(const std::size_t & newSize)
 {
-  int *_bookArray;
   _bookArray = new int[30];
   // dont know if this right just here as a place holder
 }
@@ -177,7 +176,13 @@ BookList & BookList::operator+=( const BookList & rhs)
   // by repeatedly adding each book at the end of the current book list
   // as long as it does not exceed <_capacity>
   // If exceeds, then stop adding
-
+  if(_capacity < counter){
+    throw std::underflow_error("number of books exceeds capacity")
+  }
+  for(int i = 0; i <_capacity; i++ )
+  {
+    //use a for loop to add on to the book list
+  }
 }
 
 /*********************
@@ -206,6 +211,7 @@ std::size_t BookList::find( const Book & book ) const
 // of that book. If the book does not exist, return the size of this
 // book list as an indicator the book does not exist.
 {
+
 }
 
 Book BookList::operator[](std::size_t index) const {
