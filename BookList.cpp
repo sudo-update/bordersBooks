@@ -162,7 +162,9 @@ std::istream & operator>>( std::istream & stream, BookList & bookList )
 // TO DO
 BookList::BookList(const std::size_t & newSize)
 {
-  _bookArray = new int[30];
+  _capacity = newSize;
+  _books_array_size = 0;
+  _bookArray = new Book [newSize];
   // dont know if this right just here as a place holder
 }
 
@@ -176,13 +178,13 @@ BookList & BookList::operator+=( const BookList & rhs)
   // by repeatedly adding each book at the end of the current book list
   // as long as it does not exceed <_capacity>
   // If exceeds, then stop adding
-  if(_capacity < counter){
-    throw std::underflow_error("number of books exceeds capacity")
-  }
-  for(int i = 0; i <_capacity; i++ )
+  int right_hand_book_list = 0;
+  while(_books_array_size < _capacity && right_hand_book_list < rhs.size())
   {
-    //use a for loop to add on to the book list
+    //use a while loop to add on to the book list
+    _bookArray[_books_array_size++] = rhs [right_hand_book_list++];
   }
+  return *this;
 }
 
 /*********************
@@ -202,7 +204,7 @@ BookList::~BookList()
 std::size_t BookList::size() const
 {
   // return the size of the dynamic array
-  return _bookArray.size();
+  return _books_array_size;
 }
 
 //TO DO
@@ -211,7 +213,14 @@ std::size_t BookList::find( const Book & book ) const
 // of that book. If the book does not exist, return the size of this
 // book list as an indicator the book does not exist.
 {
-
+  for(int i = 0; i < _books_array_size; i++)
+  {
+    if(_bookArray[i] == book)
+    {
+      return i;
+    }
+  }
+  return _books_array_size;
 }
 
 Book BookList::operator[](std::size_t index) const {
