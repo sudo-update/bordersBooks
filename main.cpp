@@ -12,7 +12,7 @@ template <typename T>
 bool assertTrue(const string&, const T&, const T&);
 
 int main(int argc, char const *argv[]) {
-	
+
 	BookList list10(10);
 	list10.readInFile("data.csv");
 	assertTrue("list10.size()", size_t(10), list10.size());
@@ -20,7 +20,7 @@ int main(int argc, char const *argv[]) {
 	assertTrue("list10 - [2]._title",  string("The Grapes of Wrath"), list10[2].get_title());
 	assertTrue("list10 - [5]._author", string("Vladimir Nabokov"), list10[5].get_author());
 	assertTrue("list10 - [6]._price", 14.38, list10[6].get_price());
-	
+
 	BookList list20(20);
 	list20.readInFile("data.csv");
 
@@ -29,31 +29,31 @@ int main(int argc, char const *argv[]) {
 	Book book1("The Catcher in the Rye", "J. D. Salinger", "7543321726", 5.99);
 	assertTrue("list20-find(7543321726, The Catcher in the Rye, J. D. Salinger, 5.99)", size_t(7),list20.find(book1) );
 	assertTrue("list20 - [16]._price", 18.75, list20[16].get_price());
-	
+
 	BookList list30;
 	list30.readInFile("data.csv");
 	assertTrue("list30 - [20]._isbn", string("09780399501487"), list30[20]._isbn);
 	assertTrue("list30 - [22]._title",  string("Anna Karenina"), list30[22].get_title());
 	assertTrue("list30 - [25]._author", string("Marcel Proust"), list30[25].get_author());
 	assertTrue("list30 - [26]._price", 4.89, list30[26].get_price());
-	
+
 	// create an empty list
 	BookList list40(40);
 	// add list10 to list40
 	list40 += list10;
-	
+
 	assertTrue("list40 - [9]._isbn", string("0679732241"), list40[9]._isbn);
 	assertTrue("list40 - [8]._author", string("Toni Morrison"), list40[8].get_author());
-	
+
 	// append list20 to list40
 	list40 += list20;
-	
+
 	assertTrue("list40 - [23]._title",  string("Brave New World"), list40[23].get_title());
 	assertTrue("list40 - [27]._price", 10.99, list40[27].get_price());
-	
+
 	// append list30 to list40
 	list40 += list30;
-	
+
 	assertTrue("list40 - [31]._isbn", string("9780743273565"), list40[31]._isbn);
 
 	assertTrue("list30 - [33]._title",  string("Nineteen Eighty-Four"), list40[33].get_title());
@@ -62,7 +62,14 @@ int main(int argc, char const *argv[]) {
 
 	assertTrue("list40 - [39]._price", 12.99, list40[39].get_price());
 
-	
+	BookList noSizeList;
+	assertTrue("noSizeList - [].capacity", 30.00, (double)noSizeList.capacity());
+  //  tests capacity when constructor is given no size parameter
+  noSizeList += list40;
+	assertTrue("noSizeList - [].size after adding list40 to it", 30.0, (double)noSizeList.size());
+	//  tests size after adding 40 elements to out list with a capacpcity of 30
+
+
 	cout << endl << testCount << " tests passed out of " << testTotal << " total tests" << endl;
 return 0;
 }

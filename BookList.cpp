@@ -165,7 +165,7 @@ BookList::BookList(const std::size_t & newSize)
   _capacity = newSize;
   _books_array_size = 0;
   _bookArray = new Book [newSize];
-  // dont know if this right just here as a place holder
+  //  constructor
 }
 
 /************************
@@ -206,7 +206,11 @@ std::size_t BookList::size() const
   // return the size of the dynamic array
   return _books_array_size;
 }
-
+std::size_t BookList::capacity() const
+{
+  // returns capacity
+  return _capacity;
+}
 //TO DO
 std::size_t BookList::find( const Book & book ) const
 // Locate the book in this book list and return the zero-based position

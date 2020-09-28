@@ -47,30 +47,32 @@ class BookList
 public:
 	// Types and Exceptions
 	enum class Position {TOP, BOTTOM};
-	
+
 	// Constructors, destructor, and assignment operators
 	BookList(const std::size_t & newCap = 30); //TO DO
 	// can be the default constructor
 	BookList( const BookList & other ) = default; // copy constructor
 	BookList( BookList && other ) = default; // move constructor
 	BookList & operator=(const BookList& rhs ) = default; // assignment operator
-	BookList & operator+=( const BookList & rhs); 
+	BookList & operator+=( const BookList & rhs);
 	// TO DO
 	// concatenates the rhs list to the end of this list
-	
+
 	~BookList(); // TO DO // destructor
-	
+
 	// Queries or getters
 	std::size_t size() const; // TO DO
 	// returns the number of books in the list
+	std::size_t capacity() const;
+	// returns capacity
 	std::size_t find( const Book & book ) const; // TO DO                                             // returns the (zero-based) offset from top of list where the book is found, or the size of the list if the book is not found
-	
+
 	Book operator[](std::size_t index) const;// TO DO
 	// returns the book at the specified <index>
-	
+
 	// read from a file
 	void readInFile(const std::string& filename);
-	
+
 private:
 	// Instance Attributes
 	std::size_t _capacity; // maximum number of books that can be stored in the dynamic array
