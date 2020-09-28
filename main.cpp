@@ -6,7 +6,7 @@
 using namespace std;
 
 static int testCount = 0;
-static const int testTotal = 20;
+static const int testTotal = 22;
 
 template <typename T>
 bool assertTrue(const string&, const T&, const T&);
@@ -68,7 +68,7 @@ int main(int argc, char const *argv[]) {
   noSizeList += list40;
 	assertTrue("noSizeList - [].size after adding list40 to it", 30.0, (double)noSizeList.size());
 	//  tests size after adding 40 elements to out list with a capacpcity of 30
-
+  //  Book b = noSizeList[999]; test for out of bounds getter function call [removed]
 
 	cout << endl << testCount << " tests passed out of " << testTotal << " total tests" << endl;
 return 0;

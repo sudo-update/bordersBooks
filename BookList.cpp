@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <cmath>
 #include <fstream>
+#include <exception>  // exceptions
 
 #include "BookList.hpp"
 
@@ -228,7 +229,10 @@ std::size_t BookList::find( const Book & book ) const
 }
 
 Book BookList::operator[](std::size_t index) const {
-  return _bookArray[index];
+  if (index <= _capacity) {
+    return _bookArray[index];
+  } else { throw std::out_of_range("Index is out of bounds!"); }
+
 }
 
 /*************************
